@@ -9,6 +9,7 @@ body {
 }
 
 main {
+    background-color: aqua;
     width: 80%;
     height: 80%;
     position: absolute;
@@ -18,6 +19,7 @@ main {
     bottom: 0;
     margin: auto;
 }
+
 
 #display {
     width: 50%;
