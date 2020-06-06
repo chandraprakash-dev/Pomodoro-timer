@@ -12,9 +12,11 @@ function stopTimer() {
 }
 
 function startTimer() {
-    let time = display.textContent.split(':');
-    let minute = +time[0];
-    let second = +time[1];
+    let timeString = display.textContent;
+    timeString = timeString.replace(/\s+/g, '').split(':');
+
+    let minute = +timeString[0];
+    let second = +timeString[1];
     console.log(minute, second);
 
     timerId = setInterval( () => {
