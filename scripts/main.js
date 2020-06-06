@@ -2,6 +2,11 @@
 // Global variables
 let timerId;
 ////////////////////////////////////////////////////////////////////////////////////////////////
+function resetTimer() {
+    stopTimer();
+    display.textContent = "01 : 00";
+}
+
 function stopTimer() {
     if(timerId) clearInterval(timerId);
 }
@@ -41,3 +46,7 @@ start.addEventListener('click', startTimer);
 
 const stop = document.querySelector('button[value="stop"]');
 stop.addEventListener('click', stopTimer);
+
+const reset = document.querySelector('button[value="reset"]');
+reset.addEventListener('click', resetTimer);
+
