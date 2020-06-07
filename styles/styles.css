@@ -18,9 +18,44 @@ main {
     right: 0;
     bottom: 0;
     margin: auto;
+    display: grid;
+    grid-template-rows: 1fr 1fr 6fr;
+    grid-template-areas: "custom"
+                         "bar"
+                         "timer-container";
+}
+
+#custom {
+    text-align: center;
+    margin: 10px;
+    grid-area: custom;
+}
+
+#timer-container {
+    grid-area: timer-container;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    justify-content: center;
+    align-items: center;
+}
+
+#bar {
+    grid-area: bar;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+#timer {
+    grid-column: 2/3;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
 #display {
-    width: 50%;
-    height: 50%;
+    width: 100px;
+    height: 50px;
+    font-size: xx-large;
+    justify-self: center;
 }
