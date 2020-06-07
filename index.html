@@ -13,21 +13,27 @@
 
         </header>
         <main>
-            <div>
-                <p>Customize timings</p>
+            <div id="custom">
+                <button>Customize timings</button>
             </div>
             <div id="bar">
-                <p>Pomodoro</p>
-                <p>short break</p>
-                <p>long break</p>
+                <button>Pomodoro</button>
+                <button>short break</button>
+                <button>long break</button>
             </div>
-            <img height="200" width="250" src="assets/images/icon.png"  alt="tomato"/>
-            <div id="display">
-                00 : 10
+            <div id="timer-container">
+                <div id="timer">
+                    <div id="logo">
+                        <img height="150" width="200" src="assets/images/icon.png"  alt="tomato"/>
+                    </div>
+                    <div id="display"><p>00 : 10</p></div>
+                    <div id="options">
+                        <button value="reset">Reset</button>
+                        <button value="start">start</button>
+                        <button value="stop">stop</button>
+                    </div>
+                </div>
             </div>
-            <button value="reset">Reset</button>
-            <button value="start">start</button>
-            <button value="stop">stop</button>
         </main>
         <footer>
 
