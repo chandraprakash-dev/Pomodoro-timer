@@ -3,11 +3,17 @@
 let timerId;
 let mode = 'Pomodoro';
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function resetTimer(mode) {
+function setMode() {
+    mode = this.value;
+    console.log(mode);
+    resetTimer();
+}
+
+function resetTimer() {
     stopTimer();
     let time;
     switch (mode) {
-        case 'Pomodoro':
+        case 'pomodoro':
             time = "25 : 00";
             break;
         case 'short':
@@ -54,14 +60,18 @@ function startTimer() {
 }
 
 // Main starts here
+const pomodoro = document.querySelector('button[value="pomodoro"]');
+const short = document.querySelector('button[value="short"]');
+const long = document.querySelector('button[value="long"]');
 const display = document.querySelector('div[id="display"]');
-
 const start = document.querySelector('button[value="start"]');
-start.addEventListener('click', startTimer);
-
 const stop = document.querySelector('button[value="stop"]');
-stop.addEventListener('click', stopTimer);
-
 const reset = document.querySelector('button[value="reset"]');
+
+pomodoro.addEventListener('click', setMode);
+short.addEventListener('click', setMode);
+long.addEventListener('click', setMode);
+start.addEventListener('click', startTimer);
+stop.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
 
