@@ -1,10 +1,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Global variables
 let timerId;
+let mode = 'Pomodoro';
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function resetTimer() {
+function resetTimer(mode) {
     stopTimer();
-    display.textContent = "01 : 00";
+    let time;
+    switch (mode) {
+        case 'Pomodoro':
+            time = "25 : 00";
+            break;
+        case 'short':
+            time = "5 : 00";
+            break;
+        case 'long':
+            time = "30 : 00";
+            break;
+    }
+    display.textContent = time;
 }
 
 function stopTimer() {
