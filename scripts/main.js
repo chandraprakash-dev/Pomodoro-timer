@@ -3,6 +3,17 @@
 let timerId;
 let mode = 'Pomodoro';
 ////////////////////////////////////////////////////////////////////////////////////////////////
+function bringUpForm() {
+    const form = document.createElement('form');
+    form.setAttribute('name', 'timeInfo');
+    const pomodoro = document.createElement('input');
+    const short = document.createElement('input');
+    const long = document.createElement('input');
+    form.appendChild(pomodoro);
+    form.appendChild(short);
+    form.appendChild(long);
+    main.appendChild(form);
+}
 function setMode() {
     mode = this.value;
     console.log(mode);
@@ -60,6 +71,8 @@ function startTimer() {
 }
 
 // Main starts here
+const main = document.querySelector('main');
+const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
@@ -68,6 +81,7 @@ const start = document.querySelector('button[value="start"]');
 const stop = document.querySelector('button[value="stop"]');
 const reset = document.querySelector('button[value="reset"]');
 
+customize.addEventListener('click', bringUpForm);
 pomodoro.addEventListener('click', setMode);
 short.addEventListener('click', setMode);
 long.addEventListener('click', setMode);

@@ -25,6 +25,10 @@ main {
                          "timer-container";
 }
 
+button {
+    cursor: pointer;
+}
+
 #custom {
     text-align: center;
     margin: 10px;
