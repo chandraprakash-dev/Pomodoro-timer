@@ -4,15 +4,44 @@ let timerId;
 let mode = 'Pomodoro';
 ////////////////////////////////////////////////////////////////////////////////////////////////
 function bringUpForm() {
+    const popupContainer = document.createElement('div');
+    popupContainer.setAttribute('id', 'popup-container');
+    const popup = document.createElement('div');
+    popup.setAttribute('id', 'popup');
+    popupContainer.appendChild(popup);
+    body.appendChild(popupContainer);
+
     const form = document.createElement('form');
     form.setAttribute('name', 'timeInfo');
+    let br = document.createElement('br');
+
+
+    const pomodoroLabel = document.createElement('label');
+    pomodoroLabel.setAttribute('for', 'pomodoroInput');
+    pomodoroLabel.textContent = "Pomodoro";
+    form.appendChild(pomodoroLabel);
     const pomodoro = document.createElement('input');
-    const short = document.createElement('input');
-    const long = document.createElement('input');
+    pomodoro.setAttribute('id', 'pomodoroInput');
     form.appendChild(pomodoro);
+    form.appendChild(br);
+
+    const shortLabel = document.createElement('label');
+    shortLabel.setAttribute('for', 'pomodoroInput');
+    shortLabel.textContent = "short break";
+    form.appendChild(shortLabel);
+    const short = document.createElement('input');
     form.appendChild(short);
+    form.appendChild(br);
+
+    const longLabel = document.createElement('label');
+    longLabel.setAttribute('for', 'pomodoroInput');
+    longLabel.textContent = "long break";
+    form.appendChild(longLabel);
+    const long = document.createElement('input');
     form.appendChild(long);
-    main.appendChild(form);
+    form.appendChild(br);
+
+    popup.appendChild(form);
 }
 function setMode() {
     mode = this.value;
@@ -71,6 +100,7 @@ function startTimer() {
 }
 
 // Main starts here
+const body = document.querySelector('body');
 const main = document.querySelector('main');
 const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
