@@ -8,14 +8,12 @@ let timings = {
     'Long': "30 : 00"
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function createPopUp() {
-    const popupContainer = document.createElement('div');
-    popupContainer.setAttribute('id', 'popup-container');
-    const popup = document.createElement('div');
-    popup.setAttribute('id', 'popup');
-    popupContainer.appendChild(popup);
-    body.appendChild(popupContainer);
-    return popup;
+function updateTimings() {
+    timings.Pomodoro = document.timeInfo.Pomodoro.value;
+    timings.Short = document.timeInfo.Short.value;
+    timings.Long = document.timeInfo.Long.value;
+    display.textContent = timings[currentMode];
+    console.log(display.textContent);
 }
 
 function addInput(form, timing) {
@@ -26,9 +24,19 @@ function addInput(form, timing) {
     form.appendChild(label);
     const input = document.createElement('input');
     input.setAttribute('id', timing);
-    // input.value = timings[timing];
+    input.value = timings[timing].split(' ')[0];
     form.appendChild(input);
     form.appendChild(br);
+}
+
+function createPopUp() {
+    const popupContainer = document.createElement('div');
+    popupContainer.setAttribute('id', 'popup-container');
+    const popup = document.createElement('div');
+    popup.setAttribute('id', 'popup');
+    popupContainer.appendChild(popup);
+    body.appendChild(popupContainer);
+    return popup;
 }
 
 function bringUpForm() {
@@ -36,10 +44,17 @@ function bringUpForm() {
 
     const form = document.createElement('form');
     form.setAttribute('name', 'timeInfo');
-    let br = document.createElement('br');
 
     // Let's create input fields for each of the timings
-    timings.forEach(timing => addInput(form, timing));
+    Object.keys(timings).forEach(timing => addInput(form, timing));
+
+    // Add save button to submit the form
+    const save = document.createElement('input');
+    save.type = 'button';
+    save.value = 'Save';
+    form.appendChild(save);
+
+    save.addEventListener('click', updateTimings);
     popup.appendChild(form);
 }
 
