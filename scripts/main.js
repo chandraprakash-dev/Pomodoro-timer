@@ -1,61 +1,23 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Global variables
 let timerId;
-let currentMode = 'Pomodoro';
+let currentMode = 'pomodoro';
 let timings = {
-    'Pomodoro' : "25 : 00",
-    'Short' : "5 : 00",
-    'Long': "30 : 00"
+    'pomodoro' : "25 : 00",
+    'short' : "5 : 00",
+    'long': "30 : 00"
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function updateTimings() {
-    timings.Pomodoro = document.timeInfo.Pomodoro.value;
-    timings.Short = document.timeInfo.Short.value;
-    timings.Long = document.timeInfo.Long.value;
-    display.textContent = timings[currentMode];
-    console.log(display.textContent);
-}
-
-function addInput(form, timing) {
-    const br = document.createElement('br');
-    const label = document.createElement('label');
-    label.setAttribute('for', timing);
-    label.textContent = timing;
-    form.appendChild(label);
-    const input = document.createElement('input');
-    input.setAttribute('id', timing);
-    input.value = timings[timing].split(' ')[0];
-    form.appendChild(input);
-    form.appendChild(br);
-}
-
-function createPopUp() {
-    const popupContainer = document.createElement('div');
-    popupContainer.setAttribute('id', 'popup-container');
-    const popup = document.createElement('div');
-    popup.setAttribute('id', 'popup');
-    popupContainer.appendChild(popup);
-    body.appendChild(popupContainer);
-    return popup;
-}
-
 function bringUpForm() {
-    const popup = createPopUp();
+    const popUpContainer = document.querySelector('#popup-container');
+    popUpContainer.style.display = 'initial';
 
-    const form = document.createElement('form');
-    form.setAttribute('name', 'timeInfo');
+    document.timeInfo.pomodoro.value = timings.pomodoro.split(' ')[0];
+    document.timeInfo.short.value = timings.short.split(' ')[0];
+    document.timeInfo.long.value = timings.long.split(' ')[0];
 
-    // Let's create input fields for each of the timings
-    Object.keys(timings).forEach(timing => addInput(form, timing));
-
-    // Add save button to submit the form
-    const save = document.createElement('input');
-    save.type = 'button';
-    save.value = 'Save';
-    form.appendChild(save);
-
+    const save = document.querySelector('input[value="Save"]');
     save.addEventListener('click', updateTimings);
-    popup.appendChild(form);
 }
 
 function setMode() {
@@ -97,14 +59,13 @@ function startTimer() {
         let secondPrefix = '';
         if(minute < 10) minutePrefix = '0';
         if(second < 10) secondPrefix = '0';
-        console.log(minute, second);
         display.textContent = minutePrefix + minute + " : " + secondPrefix + second;
     }, 1000);
 }
 
 // Main starts here
 const body = document.querySelector('body');
-const main = document.querySelector('main');
+// const main = document.querySelector('main');
 const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
