@@ -1,69 +1,57 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Global variables
 let timerId;
-let mode = 'Pomodoro';
+let currentMode = 'Pomodoro';
+let timings = {
+    'Pomodoro' : "25 : 00",
+    'Short' : "5 : 00",
+    'Long': "30 : 00"
+};
 ////////////////////////////////////////////////////////////////////////////////////////////////
-function bringUpForm() {
+function createPopUp() {
     const popupContainer = document.createElement('div');
     popupContainer.setAttribute('id', 'popup-container');
     const popup = document.createElement('div');
     popup.setAttribute('id', 'popup');
     popupContainer.appendChild(popup);
     body.appendChild(popupContainer);
+    return popup;
+}
+
+function addInput(form, timing) {
+    const br = document.createElement('br');
+    const label = document.createElement('label');
+    label.setAttribute('for', timing);
+    label.textContent = timing;
+    form.appendChild(label);
+    const input = document.createElement('input');
+    input.setAttribute('id', timing);
+    // input.value = timings[timing];
+    form.appendChild(input);
+    form.appendChild(br);
+}
+
+function bringUpForm() {
+    const popup = createPopUp();
 
     const form = document.createElement('form');
     form.setAttribute('name', 'timeInfo');
     let br = document.createElement('br');
 
-
-    const pomodoroLabel = document.createElement('label');
-    pomodoroLabel.setAttribute('for', 'pomodoroInput');
-    pomodoroLabel.textContent = "Pomodoro";
-    form.appendChild(pomodoroLabel);
-    const pomodoro = document.createElement('input');
-    pomodoro.setAttribute('id', 'pomodoroInput');
-    form.appendChild(pomodoro);
-    form.appendChild(br);
-
-    const shortLabel = document.createElement('label');
-    shortLabel.setAttribute('for', 'pomodoroInput');
-    shortLabel.textContent = "short break";
-    form.appendChild(shortLabel);
-    const short = document.createElement('input');
-    form.appendChild(short);
-    form.appendChild(br);
-
-    const longLabel = document.createElement('label');
-    longLabel.setAttribute('for', 'pomodoroInput');
-    longLabel.textContent = "long break";
-    form.appendChild(longLabel);
-    const long = document.createElement('input');
-    form.appendChild(long);
-    form.appendChild(br);
-
+    // Let's create input fields for each of the timings
+    timings.forEach(timing => addInput(form, timing));
     popup.appendChild(form);
 }
+
 function setMode() {
-    mode = this.value;
-    console.log(mode);
+    currentMode = this.value;
+    console.log(currentMode);
     resetTimer();
 }
 
 function resetTimer() {
     stopTimer();
-    let time;
-    switch (mode) {
-        case 'pomodoro':
-            time = "25 : 00";
-            break;
-        case 'short':
-            time = "5 : 00";
-            break;
-        case 'long':
-            time = "30 : 00";
-            break;
-    }
-    display.textContent = time;
+    display.textContent = timings[currentMode];
 }
 
 function stopTimer() {
