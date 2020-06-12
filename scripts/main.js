@@ -3,18 +3,29 @@
 let timerId;
 let currentMode = 'pomodoro';
 let timings = {
-    'pomodoro' : "25 : 00",
-    'short' : "5 : 00",
-    'long': "30 : 00"
+    'pomodoro' : 25,
+    'short' : 5,
+    'long': 30
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
+function updateClock() {
+    clock.textContent = timings[currentMode] + " : 00";
+}
+
+function  updateTimings() {
+    timings.pomodoro = document.timeInfo.pomodoro.value;
+    timings.short = document.timeInfo.short.value ;
+    timings.long = document.timeInfo.long.value;
+    updateClock();
+    console.log(timings[currentMode]);
+}
 function bringUpForm() {
     const popUpContainer = document.querySelector('#popup-container');
     popUpContainer.style.display = 'initial';
 
-    document.timeInfo.pomodoro.value = timings.pomodoro.split(' ')[0];
-    document.timeInfo.short.value = timings.short.split(' ')[0];
-    document.timeInfo.long.value = timings.long.split(' ')[0];
+    document.timeInfo.pomodoro.value = timings.pomodoro;
+    document.timeInfo.short.value = timings.short;
+    document.timeInfo.long.value = timings.long;
 
     const save = document.querySelector('input[value="Save"]');
     save.addEventListener('click', updateTimings);
@@ -28,7 +39,7 @@ function setMode() {
 
 function resetTimer() {
     stopTimer();
-    display.textContent = timings[currentMode];
+    updateClock()
 }
 
 function stopTimer() {
@@ -36,7 +47,7 @@ function stopTimer() {
 }
 
 function startTimer() {
-    let timeString = display.textContent;
+    let timeString = clock.textContent;
     timeString = timeString.replace(/\s+/g, '').split(':');
 
     let minute = +timeString[0];
@@ -59,7 +70,7 @@ function startTimer() {
         let secondPrefix = '';
         if(minute < 10) minutePrefix = '0';
         if(second < 10) secondPrefix = '0';
-        display.textContent = minutePrefix + minute + " : " + secondPrefix + second;
+        clock.textContent = minutePrefix + minute + " : " + secondPrefix + second;
     }, 1000);
 }
 
@@ -70,7 +81,7 @@ const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
-const display = document.querySelector('div[id="display"]');
+const clock = document.querySelector('div[id="clock"]');
 const start = document.querySelector('button[value="start"]');
 const stop = document.querySelector('button[value="stop"]');
 const reset = document.querySelector('button[value="reset"]');
