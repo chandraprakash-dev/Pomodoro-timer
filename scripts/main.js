@@ -8,37 +8,37 @@ let timings = {
     'long': 30
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
-// function loopBlock() {
-//     let slice = 0;
-//     setTiming('pomodoro');
-//
-//     // Watch the clock
-//     let config = { childList: true };
-//
-//     let callback = function(mutationsList, observer) {
-//         for(let mutation of mutationsList) {
-//             if (mutation.type === 'childList') {
-//                 let minute = getMinAndSec()[0];
-//                 let second = getMinAndSec()[1];
-//                 if(minute || second) return;
-//                 slice += 1
-//                 if(slice === 8) {
-//                     setTiming('long');
-//                     observer.disconnect();
-//                     return;
-//                 } else if(slice % 2) {
-//                     setTiming('short');
-//                 } else {
-//                     setTiming('pomodoro');
-//                 }
-//                 startTimer();
-//                 return;
-//             }
-//         }
-//     };
-//     let observer = new MutationObserver(callback);
-//     observer.observe(clock, config);
-// }
+function loopBlock() {
+    let slice = 0;
+    setTiming('pomodoro');
+
+    // Watch the clock
+    let config = { childList: true };
+
+    let callback = function(mutationsList, observer) {
+        for(let mutation of mutationsList) {
+            if (mutation.type === 'childList') {
+                let minute = getMinAndSec()[0];
+                let second = getMinAndSec()[1];
+                if(minute || second) return;
+                slice += 1
+                if(slice === 8) {
+                    setTiming('long');
+                    observer.disconnect();
+                    return;
+                } else if(slice % 2) {
+                    setTiming('short');
+                } else {
+                    setTiming('pomodoro');
+                }
+                startTimer();
+                return;
+            }
+        }
+    };
+    let observer = new MutationObserver(callback);
+    observer.observe(clock, config);
+}
 
 function closePopup() {
     const popUpContainer = document.querySelector('#popup-container');
@@ -124,12 +124,11 @@ function startTimer() {
 
 // Main starts here
 const body = document.querySelector('body');
-// const main = document.querySelector('main');
 const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
-// const loop = document.querySelector('button[value="loop"]');
+const loop = document.querySelector('button[value="loop"]');
 const clock = document.querySelector('div[id="clock"]');
 const start = document.querySelector('button[value="start"]');
 const stop = document.querySelector('button[value="stop"]');
@@ -139,7 +138,7 @@ customize.addEventListener('click', bringUpForm);
 pomodoro.addEventListener('click', setMode);
 short.addEventListener('click', setMode);
 long.addEventListener('click', setMode);
-// loop.addEventListener('click', loopBlock);
+loop.addEventListener('click', loopBlock);
 start.addEventListener('click', startTimer);
 stop.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
