@@ -72,16 +72,16 @@ function bringUpForm() {
     save.addEventListener('click', updateTimings);
 }
 
-// function  setTiming(timing) {
-//     console.log(timing);
-//     currentTiming = timing;
-//     resetTimer();
-// }
-//
-// function setMode() {
-//     let timing = this.value;
-//     setTiming(timing);
-// }
+function  setTiming(timing) {
+    console.log(timing);
+    currentTiming = timing;
+    resetTimer();
+}
+
+function setMode() {
+    let timing = this.value;
+    setTiming(timing);
+}
 
 function resetTimer() {
     stopTimer();
