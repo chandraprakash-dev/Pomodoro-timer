@@ -81,3 +81,12 @@ button {
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
+#close {
+    position: absolute;
+    top:0;
+    right: 10px;
+    font-size: 40px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}

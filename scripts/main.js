@@ -8,6 +8,11 @@ let timings = {
     'long': 30
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
+function closePopup() {
+    const popUpContainer = document.querySelector('#popup-container');
+    popUpContainer.style.display = 'none';
+}
+
 function updateClock() {
     clock.textContent = timings[currentMode] + " : 00";
 }
@@ -17,8 +22,9 @@ function  updateTimings() {
     timings.short = document.timeInfo.short.value ;
     timings.long = document.timeInfo.long.value;
     updateClock();
-    console.log(timings[currentMode]);
+    closePopup();
 }
+
 function bringUpForm() {
     const popUpContainer = document.querySelector('#popup-container');
     popUpContainer.style.display = 'initial';
@@ -26,6 +32,9 @@ function bringUpForm() {
     document.timeInfo.pomodoro.value = timings.pomodoro;
     document.timeInfo.short.value = timings.short;
     document.timeInfo.long.value = timings.long;
+
+    const close = document.querySelector('div[id="close"]');
+    close.addEventListener('click', closePopup);
 
     const save = document.querySelector('input[value="Save"]');
     save.addEventListener('click', updateTimings);
