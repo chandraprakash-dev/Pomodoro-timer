@@ -1,20 +1,52 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Global variables
 let timerId;
-let currentMode = 'pomodoro';
+let currentTiming = 'pomodoro';
 let timings = {
     'pomodoro' : 25,
     'short' : 5,
     'long': 30
 };
 ////////////////////////////////////////////////////////////////////////////////////////////////
+// function loopBlock() {
+//     let slice = 0;
+//     setTiming('pomodoro');
+//
+//     // Watch the clock
+//     let config = { childList: true };
+//
+//     let callback = function(mutationsList, observer) {
+//         for(let mutation of mutationsList) {
+//             if (mutation.type === 'childList') {
+//                 let minute = getMinAndSec()[0];
+//                 let second = getMinAndSec()[1];
+//                 if(minute || second) return;
+//                 slice += 1
+//                 if(slice === 8) {
+//                     setTiming('long');
+//                     observer.disconnect();
+//                     return;
+//                 } else if(slice % 2) {
+//                     setTiming('short');
+//                 } else {
+//                     setTiming('pomodoro');
+//                 }
+//                 startTimer();
+//                 return;
+//             }
+//         }
+//     };
+//     let observer = new MutationObserver(callback);
+//     observer.observe(clock, config);
+// }
+
 function closePopup() {
     const popUpContainer = document.querySelector('#popup-container');
     popUpContainer.style.display = 'none';
 }
 
 function updateClock() {
-    clock.textContent = timings[currentMode] + " : 00";
+    clock.textContent = timings[currentTiming] + " : 00";
 }
 
 function  updateTimings() {
@@ -40,11 +72,16 @@ function bringUpForm() {
     save.addEventListener('click', updateTimings);
 }
 
-function setMode() {
-    currentMode = this.value;
-    console.log(currentMode);
-    resetTimer();
-}
+// function  setTiming(timing) {
+//     console.log(timing);
+//     currentTiming = timing;
+//     resetTimer();
+// }
+//
+// function setMode() {
+//     let timing = this.value;
+//     setTiming(timing);
+// }
 
 function resetTimer() {
     stopTimer();
@@ -55,13 +92,15 @@ function stopTimer() {
     if(timerId) clearInterval(timerId);
 }
 
-function startTimer() {
+function getMinAndSec() {
     let timeString = clock.textContent;
     timeString = timeString.replace(/\s+/g, '').split(':');
+    return [+timeString[0], +timeString[1]];
+}
 
-    let minute = +timeString[0];
-    let second = +timeString[1];
-    console.log(minute, second);
+function startTimer() {
+    let minute = getMinAndSec()[0];
+    let second = getMinAndSec()[1];
 
     timerId = setInterval( () => {
         if(minute === 0) {
@@ -90,6 +129,7 @@ const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
+// const loop = document.querySelector('button[value="loop"]');
 const clock = document.querySelector('div[id="clock"]');
 const start = document.querySelector('button[value="start"]');
 const stop = document.querySelector('button[value="stop"]');
@@ -99,6 +139,7 @@ customize.addEventListener('click', bringUpForm);
 pomodoro.addEventListener('click', setMode);
 short.addEventListener('click', setMode);
 long.addEventListener('click', setMode);
+// loop.addEventListener('click', loopBlock);
 start.addEventListener('click', startTimer);
 stop.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
