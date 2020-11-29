@@ -1,4 +1,4 @@
 # Pomodoro-timer
 
 
-Live demo: https://codesurfer3022.github.io/Pomodoro-timer/
+Live demo: https://chandraprakash-dev.github.io/Pomodoro-timer/
