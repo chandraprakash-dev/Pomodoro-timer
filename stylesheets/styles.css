@@ -6,12 +6,23 @@ html{
 body {
     height: 100%;
     width: 100%;
+    background: tomato;
+}
+
+header {
+    text-align: center;
+    color: white;
+    font-family: "Helvetica Neue", sans-serif;
+    letter-spacing: 2px;
+    font-size: xx-large;
+    line-height: 1.5;
 }
 
 main {
-    background-color: aqua;
+    background-color: white;
     width: 80%;
-    height: 80%;
+    height: 70%;
+    border-radius: 20%;
     position: absolute;
     top: 0;
     left: 0;
@@ -27,40 +38,61 @@ main {
 
 button {
     cursor: pointer;
+    outline: none;
 }
 
 #custom {
+    margin: 20px;
     text-align: center;
-    margin: 10px;
     grid-area: custom;
+}
+
+button {
+    font-size: 1em;
+    color: tomato;
+    font-weight: bold;
+    background-color: #ffece4;
+    border: none;
+    border-radius: 20px;
+    height: 60px;
+    width: 150px;
+}
+
+#options button {
+    height: 50px;
+    width: 60px;
+    margin: 0 5px;
 }
 
 #timer-container {
     grid-area: timer-container;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
 #bar {
+    margin-left: 100px;
+    margin-right: 100px;
     grid-area: bar;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    display: flex;
+    justify-content: space-around;
 }
 
 #timer {
-    grid-column: 2/3;
-    display: grid;
-    justify-content: center;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    text-align: center;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+#timer div {
+    margin: 10px;
 }
 
 #clock {
-    width: 100px;
-    height: 50px;
-    font-size: xx-large;
+    font-size: 75px;
     justify-self: center;
 }
 
