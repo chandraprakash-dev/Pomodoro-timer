@@ -92,6 +92,15 @@ function  setTiming(timing) {
 function setMode() {
     loop.classList.remove('looping');
     let timing = this.value;
+
+    const prev = document.querySelector('.active');
+    if(prev) prev.classList.remove('active');
+
+    const image = document.querySelector(`#${timing}-img`);
+    image.classList.add('active');
+
+    console.log(image);
+
     setTiming(timing);
 }
 
@@ -147,6 +156,7 @@ const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
 const loop = document.querySelector('button[value="loop"]');
+const logo = document.querySelector('#logo');
 const clock = document.querySelector('div[id="clock"]');
 const start = document.querySelector('#start');
 const pause = document.querySelector('#pause');
@@ -160,4 +170,3 @@ loop.addEventListener('click', loopBlock);
 start.addEventListener('click', startTimer);
 pause.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
-
