@@ -10,7 +10,10 @@ let timings = {
 ////////////////////////////////////////////////////////////////////////////////////////////////
 function loopBlock() {
     let slice = 0;
+    loop.classList.add('looping');
+
     setTiming('pomodoro');
+    start.click();
 
     // Watch the clock
     let config = { childList: true };
@@ -73,12 +76,21 @@ function bringUpForm() {
 }
 
 function  setTiming(timing) {
+    // clear previous selected
+    const prev = document.querySelector('.selected');
+    if(prev) {
+        prev.classList.remove('selected');
+    }
+
+    document.querySelector(`button[value="${timing}"]`).classList.add('selected');
+
     console.log(timing);
     currentTiming = timing;
     resetTimer();
 }
 
 function setMode() {
+    loop.classList.remove('looping');
     let timing = this.value;
     setTiming(timing);
 }
@@ -89,6 +101,9 @@ function resetTimer() {
 }
 
 function stopTimer() {
+    pause.classList.add('hidden');
+    start.classList.remove('hidden');
+
     if(timerId) clearInterval(timerId);
 }
 
@@ -99,6 +114,9 @@ function getMinAndSec() {
 }
 
 function startTimer() {
+    start.classList.add('hidden');
+    pause.classList.remove('hidden');
+
     let minute = getMinAndSec()[0];
     let second = getMinAndSec()[1];
 
