@@ -1,11 +1,4 @@
-html{
-    height: 100vh;
-    width: 100vw;
-}
-
 body {
-    height: 100%;
-    width: 100%;
     background: tomato;
 }
 
@@ -14,17 +7,36 @@ header {
     color: white;
     font-family: "Helvetica Neue", sans-serif;
     letter-spacing: 2px;
-    font-size: xx-large;
     line-height: 1.5;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
+header p {
+    font-size: 1.5em;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    background-color: #f5c4bb;
+    color: tomato;
+    text-align: center;
+}
+
+footer p {
+    margin: 10px 0;
+}
+
+.fa-heart {
+    color: #e25555;
+}
 main {
     background-color: white;
     width: 40%;
-    height: 70%;
+    height: 550px;
     border-radius: 20px;
-    margin: 0 auto;
+    margin: 10px auto;
     display: grid;
     grid-template-rows: 1fr 1fr 6fr;
     grid-template-areas: "custom"
@@ -48,6 +60,16 @@ main {
     display: flex;
     justify-content: space-around;
     align-items: center;
+}
+
+#logo {
+    height: 150px;
+    width: 200px;
+}
+
+#logo img {
+    max-width: 100%;
+    height: auto;
 }
 
 /* style the timer */
@@ -94,7 +116,7 @@ button {
     box-shadow: 0 0 2px 2px tomato;
 }
 
-.fas {
+#options .fas {
     cursor: pointer;
     font-size: 2.5em;
     color: tomato;
@@ -119,6 +141,14 @@ button:active {
     background-color: #18a518;
     color: white;
     box-shadow: none;
+}
+
+img {
+    display: none;
+}
+
+.active {
+    display: block;
 }
 
 .fas.hidden {
