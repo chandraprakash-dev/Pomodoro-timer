@@ -6,7 +6,7 @@
         <link rel="icon" href="assets/images/icon.png" type="image/icon type">
         <link rel="stylesheet" href="stylesheets/reset.css" type="text/css">
         <link rel="stylesheet" href="stylesheets/styles.css" type="text/css">
-        
+        <script src="https://kit.fontawesome.com/48509a2691.js" crossorigin="anonymous"></script>
     </head>
     <body>
         <header>
@@ -16,12 +16,13 @@
         <main>
             <div id="custom">
                 <button value="customize">Customize timings</button>
+                <button value="loop">Loop</button>
+
             </div>
             <div id="bar">
                 <button value="pomodoro">Pomodoro</button>
                 <button value="short">Short break</button>
                 <button value="long">Long break</button>
-                <button value="loop">Loop</button>
             </div>
             <div id="timer-container">
                 <div id="timer">
@@ -30,9 +31,9 @@
                     </div>
                     <div id="clock"><p>25 : 00</p></div>
                     <div id="options">
-                        <button value="reset">Reset</button>
-                        <button value="start">start</button>
-                        <button value="stop">stop</button>
+                        <i class="fas fa-play-circle" id="start"></i>
+                        <i class="fas fa-pause-circle" id="pause"></i>
+                        <i class="fas fa-stop-circle" id="reset"></i>
                     </div>
                 </div>
             </div>

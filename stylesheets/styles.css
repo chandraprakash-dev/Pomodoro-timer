@@ -16,19 +16,15 @@ header {
     letter-spacing: 2px;
     font-size: xx-large;
     line-height: 1.5;
+    margin-bottom: 20px;
 }
 
 main {
     background-color: white;
-    width: 80%;
+    width: 40%;
     height: 70%;
-    border-radius: 20%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
+    border-radius: 20px;
+    margin: 0 auto;
     display: grid;
     grid-template-rows: 1fr 1fr 6fr;
     grid-template-areas: "custom"
@@ -36,34 +32,25 @@ main {
                          "timer-container";
 }
 
-button {
-    cursor: pointer;
-    outline: none;
-}
-
 #custom {
-    margin: 20px;
-    text-align: center;
     grid-area: custom;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }
 
-button {
-    font-size: 1em;
-    color: tomato;
-    font-weight: bold;
-    background-color: #ffece4;
-    border: none;
-    border-radius: 20px;
-    height: 60px;
-    width: 150px;
+#custom button {
+    margin: 0 10px;
 }
 
-#options button {
-    height: 50px;
-    width: 60px;
-    margin: 0 5px;
+#bar {
+    grid-area: bar;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
 }
 
+/* style the timer */
 #timer-container {
     grid-area: timer-container;
     display: flex;
@@ -71,17 +58,10 @@ button {
     align-items: center;
 }
 
-#bar {
-    margin-left: 100px;
-    margin-right: 100px;
-    grid-area: bar;
-    display: flex;
-    justify-content: space-around;
-}
-
 #timer {
-    flex: 1;
+    border: 5px solid #ffae80;
     display: flex;
+    padding: 10px;
     flex-direction: column;
     align-items: center;
     font-family: "Helvetica Neue", sans-serif;
@@ -92,10 +72,34 @@ button {
 }
 
 #clock {
-    font-size: 75px;
+    font-size: 50px;
     justify-self: center;
 }
 
+/* style the various buttons */
+button {
+    cursor: pointer;
+    outline: none;
+    font-size: 1em;
+    color: tomato;
+    font-weight: bold;
+    background-color: #ffece4;
+    border: none;
+    border-radius: 20px;
+    padding: 10px;
+}
+
+.fas {
+    cursor: pointer;
+    font-size: 2em;
+    color: tomato;
+}
+
+.fas:active {
+    transform: scale(0.9);
+}
+
+/* style the popup window */
 #popup-container {
     height: 100%;
     width: 100%;
@@ -121,4 +125,40 @@ button {
     font-size: 40px;
     transform: rotate(45deg);
     cursor: pointer;
+}
+
+/* media query for screen size less than 600px */
+@media (min-width: 1100px) {
+    main {
+        width: 35%;
+    }
+}
+
+@media (max-width: 850px) {
+    body {
+        min-width: 550px;
+    }
+    main {
+        min-width: 350px;
+    }
+
+    button {
+        font-size: 1em;
+        font-weight: normal;
+    }
+}
+
+@media (max-height: 650px) {
+    body {
+        min-height: 600px;
+    }
+
+    main {
+        min-height: 450px;
+    }
+
+    button {
+        font-size: 1em;
+        font-weight: normal;
+    }
 }

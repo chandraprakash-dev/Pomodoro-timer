@@ -130,9 +130,9 @@ const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
 const loop = document.querySelector('button[value="loop"]');
 const clock = document.querySelector('div[id="clock"]');
-const start = document.querySelector('button[value="start"]');
-const stop = document.querySelector('button[value="stop"]');
-const reset = document.querySelector('button[value="reset"]');
+const start = document.querySelector('#start');
+const pause = document.querySelector('#pause');
+const reset = document.querySelector('#reset');
 
 customize.addEventListener('click', bringUpForm);
 pomodoro.addEventListener('click', setMode);
@@ -140,6 +140,6 @@ short.addEventListener('click', setMode);
 long.addEventListener('click', setMode);
 loop.addEventListener('click', loopBlock);
 start.addEventListener('click', startTimer);
-stop.addEventListener('click', stopTimer);
+pause.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
 
