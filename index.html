@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <title>Pomodoro timer | SeaWee games</title>
-        <link rel="icon" href="assets/images/icon.png" type="image/icon type">
+        <link rel="icon" href="assets/images/pomodoro.png" type="image/icon type">
         <link rel="stylesheet" href="stylesheets/reset.css" type="text/css">
         <link rel="stylesheet" href="stylesheets/styles.css" type="text/css">
         <script src="https://kit.fontawesome.com/48509a2691.js" crossorigin="anonymous"></script>
@@ -26,7 +26,9 @@
             <div id="timer-container">
                 <div id="timer">
                     <div id="logo">
-                        <img height="150" width="200" src="assets/images/tomato.png" alt="tomato"/>
+                        <img id="pomodoro-img" class="active" src="assets/images/pomodoro.png" alt="pomodoro"/>
+                        <img id="short-img" src="assets/images/short_break.png" alt="short_break"/>
+                        <img id="long-img"  src="assets/images/long_break.png" alt="long_break"/>
                     </div>
                     <div id="clock"><p>25 : 00</p></div>
                     <div id="options">
@@ -38,7 +40,8 @@
             </div>
         </main>
         <footer>
-
+            <p>Made by Chandra</p>
+            <p>Hosted with <i class="fas fa-heart fa-sm"></i> by github</p>
         </footer>
         <div id="popup-container">
             <div id="popup">
