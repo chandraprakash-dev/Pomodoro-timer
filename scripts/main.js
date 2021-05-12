@@ -27,12 +27,15 @@ function loopBlock() {
                 slice += 1
                 if(slice === 8) {
                     setTiming('long');
+                    start.click();
                     observer.disconnect();
                     return;
                 } else if(slice % 2) {
                     setTiming('short');
+                    start.click();
                 } else {
                     setTiming('pomodoro');
+                    start.click();
                 }
                 startTimer();
                 return;
@@ -75,11 +78,35 @@ function bringUpForm() {
     save.addEventListener('click', updateTimings);
 }
 
-function  setTiming(timing) {
-    // clear previous selected
-    const prev = document.querySelector('.selected');
+function playSound(timing) {
+    const prev = document.querySelector('.playing');
     if(prev) {
-        prev.classList.remove('selected');
+        prev.pause();
+        prev.currentTime = 0;
+        prev.classList.remove('playing');
+    }
+
+    const audio = document.querySelector(`.${timing}-audio`);
+    audio.classList.add('playing');
+    audio.currentTime = 0;
+    audio.play();
+    console.log(audio);
+}
+
+function  setTiming(timing) {
+    const prevImg = document.querySelector('.active');
+    if(prevImg) prevImg.classList.remove('active');
+
+    const image = document.querySelector(`#${timing}-img`);
+    image.classList.add('active');
+
+
+    playSound(timing);
+
+    // clear previous selected
+    const prevButton = document.querySelector('.selected');
+    if(prevButton) {
+        prevButton.classList.remove('selected');
     }
 
     document.querySelector(`button[value="${timing}"]`).classList.add('selected');
@@ -92,14 +119,6 @@ function  setTiming(timing) {
 function setMode() {
     loop.classList.remove('looping');
     let timing = this.value;
-
-    const prev = document.querySelector('.active');
-    if(prev) prev.classList.remove('active');
-
-    const image = document.querySelector(`#${timing}-img`);
-    image.classList.add('active');
-
-    console.log(image);
 
     setTiming(timing);
 }
@@ -126,6 +145,7 @@ function startTimer() {
     start.classList.add('hidden');
     pause.classList.remove('hidden');
 
+    console.log(currentTiming);
     let minute = getMinAndSec()[0];
     let second = getMinAndSec()[1];
 
