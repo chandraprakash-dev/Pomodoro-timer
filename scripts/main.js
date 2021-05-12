@@ -169,6 +169,10 @@ function startTimer() {
     }, 1000);
 }
 
+function playClickSound() {
+    const audio = document.querySelector('.mouse-click');
+    audio.play();
+}
 // Main starts here
 const body = document.querySelector('body');
 const customize = document.querySelector('button[value="customize"]');
@@ -181,6 +185,8 @@ const clock = document.querySelector('div[id="clock"]');
 const start = document.querySelector('#start');
 const pause = document.querySelector('#pause');
 const reset = document.querySelector('#reset');
+const options = document.querySelector('#options').querySelectorAll('.fas');
+options.forEach(option => option.addEventListener('click', playClickSound));
 
 customize.addEventListener('click', bringUpForm);
 pomodoro.addEventListener('click', setMode);
