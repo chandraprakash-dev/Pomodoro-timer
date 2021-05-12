@@ -3,7 +3,6 @@ body {
     display: flex;
     flex-direction: column;
     background: tomato;
-    /*overflow: hidden;*/
 }
 
 header {
@@ -219,4 +218,51 @@ img {
         font-size: 1em;
         font-weight: normal;
     }
+}
+
+form[name="timeInfo"] {
+    text-align: center;
+    font-family: "Helvetica Neue", sans-serif;
+}
+
+form .line {
+    padding: 10px;
+    width: 50%;
+    margin: 10px auto;
+    display: grid;
+    grid-template-columns: 3fr 1fr 1fr;
+    justify-items: center;
+    align-items: center;
+}
+
+.line input {
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    margin: 0 5px;
+    box-shadow: 0 0 1px 1px lightgray;
+}
+
+.line input:hover {
+    box-shadow: 0 0 2px 2px lightgray;
+}
+
+.line span {
+    font-size: 12px;
+    align-self: end;
+    color: #696969;
+    justify-self: start;
+}
+
+.line input {
+    height: 30px;
+    width: 40px;
+}
+
+input[value="Save"] {
+    cursor: pointer;
+    padding: 10px;
+    border: none;
+    background-color: tomato;
+    color: white;
 }

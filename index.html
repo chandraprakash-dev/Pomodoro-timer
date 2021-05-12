@@ -53,21 +53,25 @@
                     <div id="close">
                         <p>+</p>
                     </div>
-                    <label for="pomodoro">Pomodoro</label>
-                    <br>
-                    <input type="text" name="pomodoro" id="pomodoro" value="">
-                    <span>minutes</span>
-                    <br>
-                    <label for="short">Short</label>
-                    <br>
-                    <input type="text" name="short" id="short" value="">
-                    <span>minutes</span>
-                    <br>
-                    <label for="long">Long</label>
-                    <br>
-                    <input type="text" name="long" id="long" value="">
-                    <span>minutes</span>
-                    <br>
+                    <h3>Customize timings for your timer</h3>
+                    <div class="line">
+                        <label for="pomodoro">Pomodoro</label>
+                        <input type="number" name="pomodoro" id="pomodoro" value="" required>
+                        <span>(mins)</span>
+                    </div>
+
+                    <div class="line">
+                        <label for="short">Short</label>
+                        <input type="number" name="short" id="short" value="" required>
+                        <span>(mins)</span>
+                    </div>
+
+                    <div class="line">
+                        <label for="long">Long</label>
+                        <input type="number" name="long" id="long" value="" required>
+                        <span>(mins)</span>
+                    </div>
+
                     <input type="button" value="Save">
                     <br>
                 </form>
