@@ -55,12 +55,41 @@ function updateClock() {
     clock.textContent = timings[currentTiming] + " : 00";
 }
 
-function  updateTimings() {
-    timings.pomodoro = document.timeInfo.pomodoro.value;
-    timings.short = document.timeInfo.short.value ;
-    timings.long = document.timeInfo.long.value;
+function  updateTimings(pomodoro, short, long) {
+    timings.pomodoro = pomodoro;
+    timings.short = short ;
+    timings.long = long;
     updateClock();
-    closePopup();
+}
+
+function validateAndUpdateTimings(pomodoro, short, long) {
+    let msg = 'time duration should be a positive number';
+    let valid = true;
+    if(pomodoro <= 0) {
+        document.querySelector('.pomodoro-error').textContent = msg;
+        valid = false;
+    }
+    if(short <= 0) {
+        document.querySelector('.short-error').textContent = msg;
+        valid = false;
+    }
+    if(long <= 0) {
+        document.querySelector('.long-error').textContent = msg;
+        valid = false;
+    }
+    return valid;
+}
+
+function submitForm(e) {
+    e.preventDefault();
+    console.log('here');
+    let pomodoro = document.timeInfo.pomodoro.value;
+    let short = document.timeInfo.short.value ;
+    let long = document.timeInfo.long.value;
+    if(validateAndUpdateTimings(pomodoro, short, long)) {
+        updateTimings(pomodoro, short, long);
+        closePopup();
+    }
 }
 
 function bringUpForm() {
@@ -71,11 +100,8 @@ function bringUpForm() {
     document.timeInfo.short.value = timings.short;
     document.timeInfo.long.value = timings.long;
 
-    const close = document.querySelector('div[id="close"]');
+    const close = document.querySelector('#close');
     close.addEventListener('click', closePopup);
-
-    const save = document.querySelector('input[value="Save"]');
-    save.addEventListener('click', updateTimings);
 }
 
 function playSound(timing) {
@@ -173,20 +199,20 @@ function playClickSound() {
     const audio = document.querySelector('.mouse-click');
     audio.play();
 }
+
 // Main starts here
-const body = document.querySelector('body');
 const customize = document.querySelector('button[value="customize"]');
 const pomodoro = document.querySelector('button[value="pomodoro"]');
 const short = document.querySelector('button[value="short"]');
 const long = document.querySelector('button[value="long"]');
 const loop = document.querySelector('button[value="loop"]');
-const logo = document.querySelector('#logo');
-const clock = document.querySelector('div[id="clock"]');
+const clock = document.querySelector('#clock');
 const start = document.querySelector('#start');
 const pause = document.querySelector('#pause');
 const reset = document.querySelector('#reset');
 const options = document.querySelector('#options').querySelectorAll('.fas');
 options.forEach(option => option.addEventListener('click', playClickSound));
+const form = document.querySelector('#time-info');
 
 customize.addEventListener('click', bringUpForm);
 pomodoro.addEventListener('click', setMode);
@@ -196,3 +222,4 @@ loop.addEventListener('click', loopBlock);
 start.addEventListener('click', startTimer);
 pause.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
+form.addEventListener('submit', submitForm);

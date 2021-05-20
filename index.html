@@ -49,7 +49,7 @@
         </footer>
         <div id="popup-container">
             <div id="popup">
-                <form name="timeInfo">
+                <form id="time-info" name="timeInfo" action="/" method="get">
                     <div id="close">
                         <p>+</p>
                     </div>
@@ -58,21 +58,24 @@
                         <label for="pomodoro">Pomodoro</label>
                         <input type="number" name="pomodoro" id="pomodoro" value="" required>
                         <span>(mins)</span>
+                        <p class="form__error pomodoro-error"></p>
                     </div>
 
                     <div class="line">
                         <label for="short">Short</label>
                         <input type="number" name="short" id="short" value="" required>
                         <span>(mins)</span>
+                        <p class="form__error short-error"></p>
                     </div>
 
                     <div class="line">
                         <label for="long">Long</label>
                         <input type="number" name="long" id="long" value="" required>
                         <span>(mins)</span>
+                        <p class="form__error long-error"></p>
                     </div>
 
-                    <input type="button" value="Save">
+                    <button type="submit" class="submit-form">Save</button>
                     <br>
                 </form>
             </div>

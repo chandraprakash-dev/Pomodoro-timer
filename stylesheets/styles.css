@@ -168,11 +168,14 @@ img {
 #popup {
     height: 300px;
     width: 500px;
+    padding: 10px;
     background-color: white;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 #close {
@@ -227,12 +230,12 @@ form[name="timeInfo"] {
 
 form .line {
     padding: 10px;
-    width: 50%;
+    width: 60%;
     margin: 10px auto;
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr;
-    justify-items: center;
-    align-items: center;
+    /*display: grid;*/
+    /*grid-template-columns: 3fr 1fr 1fr;*/
+    /*justify-items: center;*/
+    /*align-items: center;*/
 }
 
 .line input {
